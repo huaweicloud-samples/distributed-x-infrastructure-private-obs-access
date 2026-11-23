@@ -1,0 +1,26 @@
+# 复制为 terraform.tfvars 后按需修改。
+# 注意：不要把凭据和实例密码写进本文件，它们只从环境变量注入。
+
+region            = "cn-south-1"
+availability_zone = "cn-south-1a"
+name_prefix       = "obsep"
+
+# 网段不得与 198.19.128.0/17 重叠 —— 那是终端节点的内部转发网段
+vpc_cidr       = "10.1.0.0/16"
+subnet_cidr    = "10.1.1.0/24"
+subnet_gateway = "10.1.1.1"
+
+client_private_ip = "10.1.1.10"
+proxy_private_ip  = "10.1.1.20"
+endpoint_ip       = "10.1.1.100"
+
+# 规格参数：改动前请确认配额与容量满足需求
+ecs_flavor       = "s6.small.1"
+system_disk_type = "SAS"
+system_disk_size = 40
+
+# 置为 false 则只部署网关型路径
+enable_interface_path = true
+
+# 留空则自动生成带随机后缀的桶名
+obs_bucket_name = ""
